@@ -19,6 +19,7 @@ def scan(img):
 
     try:
         im2, cnts, hierarchy = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
         cnts = max(cnts, key=cv2.contourArea)
 
         # approximate the contour
@@ -27,7 +28,9 @@ def scan(img):
         approx = cv2.approxPolyDP(cnts, 0.02 * peri, True)
         assert len(approx) == 4
 
+
         cv2.drawContours(image, cnts, -1, (0, 255, 0), 2)
+        print("hello i was here")
 
         # apply the four point transform to obtain a top-down
         # view of the original image
